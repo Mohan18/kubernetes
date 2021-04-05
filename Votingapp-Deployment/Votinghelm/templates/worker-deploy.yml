@@ -35,7 +35,7 @@ spec:
           image: postgres
           command: ['sh', '-c', 'until pg_isready -h db -p 5432; do echo waiting for database; sleep 2; done;']
       containers:
-        - name: {{ .Chart.Name }}-worker
+        - name: {{ .Chart.Name | lower }}-worker
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.worker.image.repository }}:{{ .Values.worker.image.tag | default .Chart.AppVersion }}"

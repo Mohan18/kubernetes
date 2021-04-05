@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "Votinghelm.fullname" . }}-vote-service
+  labels:
+    name: {{ include "Votinghelm.fullname" . }}-vote-service
+    app: {{ .Values.applicationName }}
+    {{- include "Votinghelm.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.vote.service.type }}
+  ports:
+    - port: {{ .Values.vote.service.port }}
+      targetPort: {{ .Values.vote.service.targetPort }}
+      nodePort: {{ .Values.vote.service.NodePort }}
+  selector:
+    name: {{ include "Votinghelm.fullname" . }}-vote-pod
+    app: {{ .Values.applicationName }}
+    {{- include "Votinghelm.selectorLabels" . | nindent 4 }}

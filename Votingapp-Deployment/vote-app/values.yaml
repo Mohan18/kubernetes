@@ -19,7 +19,7 @@ worker:
     tag: "v1"
   initContainerImage: 
     repository: postgres
-    tag: "9.6.5"
+    tag: ""
 
 result:
   image:

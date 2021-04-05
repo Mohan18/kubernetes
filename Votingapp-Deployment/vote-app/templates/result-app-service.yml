@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "vote-app.name" . }}-result-service
+  labels:
+    name: {{ template "vote-app.name" . }}-result-service
+    app: {{ template "vote-app.name" . }}-demo
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30005
+  selector:
+    name: {{ template "vote-app.name" . }}-result-pod
+    app: {{ template "vote-app.name" . }}-demo

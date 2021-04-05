@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "vote-app.name" . }}-redis
+  labels:
+    name: {{ template "vote-app.name" . }}-redis-service
+    app: {{ template "vote-app.name" . }}-demo
+spec:
+  ports:
+    - port: 6379
+      targetPort: 6379
+  selector:
+    name: {{ template "vote-app.name" . }}-redis-pod
+    app: {{ template "vote-app.name" . }}-demo

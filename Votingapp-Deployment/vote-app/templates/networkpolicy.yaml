@@ -1,0 +1,24 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: {{ template "vote-app.name" . }}-np
+spec:
+  policyTypes:
+  - Ingress
+  - Egress
+  podSelector:
+    matchLabels:
+      name: {{ template "vote-app.name" . }}-postgress-pod
+      app: {{ template "vote-app.name" . }}-demo
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          name: {{ template "vote-app.name" . }}-worker-deploy
+          app: {{ template "vote-app.name" . }}-demo
+  egress:
+  - to:
+    - podSelector:
+        matchLabels:
+          name: {{ template "vote-app.name" . }}-result-pod
+          app: {{ template "vote-app.name" . }}-demo

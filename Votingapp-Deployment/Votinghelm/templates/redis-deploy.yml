@@ -35,20 +35,10 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.redis.image.repository }}"
-          imagePullPolicy: {{ .Values.redus.image.pullPolicy }}
+          imagePullPolicy: {{ .Values.redis.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: {{ .Values.vote.containerPort }}
+              containerPort: {{ .Values.redis.containerPort }}
               protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-      affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: name
-                operator: In
-                values:
-                - redis-pod
-            topologyKey: "kubernetes.io/hostname"

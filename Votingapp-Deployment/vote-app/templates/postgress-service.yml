@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: db
   labels:
-    name: {{ template "vote-app.name" . }}-postgress-service
+    name: db
     app: {{ template "vote-app.name" . }}-demo
 spec:
   ports:

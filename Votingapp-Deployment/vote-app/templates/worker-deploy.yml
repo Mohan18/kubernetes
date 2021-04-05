@@ -26,15 +26,3 @@ spec:
       containers:
         - name: worker-app
           image: "{{ .Values.worker.image.repository }}:{{ .Values.worker.image.tag }}"
-      affinity:
-        podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: name
-                operator: In
-                values:
-                - redis-pod
-            topologyKey: "kubernetes.io/hostname"
-
-     

@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "Votinghelm.fullname" . }}-result-service
+  name:  {{ .Values.result.name }}
   labels:
-    name: {{ include "Votinghelm.fullname" . }}-result-service
+    name:  {{ .Values.result.name }}
     app: {{ .Values.applicationName }}
     {{- include "Votinghelm.labels" . | nindent 4 }}
 spec:

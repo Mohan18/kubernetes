@@ -6,7 +6,7 @@ metadata:
     name: {{ template "vote-app.name" . }}-postgress-deploy
     app: {{ template "vote-app.name" . }}-demo
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       name: {{ template "vote-app.name" . }}-postgress-pod

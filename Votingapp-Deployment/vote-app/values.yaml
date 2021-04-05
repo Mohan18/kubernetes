@@ -30,6 +30,7 @@ redis:
   image:
     repository: redis
     tag: "latest"
+  replicaCount: 2
 
 postgres:
   image:

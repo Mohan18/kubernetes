@@ -6,7 +6,7 @@ metadata:
     name: {{ template "vote-app.name" . }}-redis-deploy
     app: {{ template "vote-app.name" . }}-demo
 spec:
-  replicas: 2
+  replicas: {{ .Values.redis.replicaCount }}
   selector:
     matchLabels:
       name: {{ template "vote-app.name" . }}-redis-pod

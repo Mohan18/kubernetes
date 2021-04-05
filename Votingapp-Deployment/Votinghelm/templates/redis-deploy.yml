@@ -21,8 +21,8 @@ spec:
       {{- end }}
       labels:
         {{- include "Votinghelm.selectorLabels" . | nindent 8 }}
-      name: {{ include "Votinghelm.fullname" . }}-redis-pod
-      app: {{ .Values.applicationName }}
+        name: {{ include "Votinghelm.fullname" . }}-redis-pod
+        app: {{ .Values.applicationName }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -35,7 +35,7 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.redis.image.repository }}"
-          imagePullPolicy: {{ .Values.vote.image.pullPolicy }}
+          imagePullPolicy: {{ .Values.redus.image.pullPolicy }}
           ports:
             - name: http
               containerPort: {{ .Values.vote.containerPort }}

@@ -6,6 +6,7 @@ metadata:
     name: {{ include "Votinghelm.fullname" . }}-redis-service
     app: {{ .Values.applicationName }}
     {{- include "Votinghelm.labels" . | nindent 4 }}
+spec:
   ports:
     - port: {{ .Values.redis.service.port }}
       targetPort: {{ .Values.redis.service.targetPort }}
